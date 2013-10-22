@@ -40,6 +40,9 @@ public class RSSMain extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Intent intent = new Intent(RSSMain.this, SplashScreen.class);
+		RSSMain.this.startActivity(intent);
+		
 		setContentView(R.layout.main);
 		
 		liste = (ListView) findViewById(R.id.feedListe);
@@ -113,7 +116,7 @@ public class RSSMain extends Activity {
 							Log.e(TAG, "Fehler im Handler" + e.getMessage());
 						}
 						
-						Handler myHandler = new Handler(myContent);
+						XmlHandler myHandler = new XmlHandler(myContent);
 						
 						try{
 							sp.parse(entity.getContent(), myHandler);

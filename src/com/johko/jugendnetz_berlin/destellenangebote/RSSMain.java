@@ -40,8 +40,8 @@ public class RSSMain extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Intent intent = new Intent(RSSMain.this, SplashScreen.class);
-		RSSMain.this.startActivity(intent);
+		/*Intent intent = new Intent(RSSMain.this, SplashScreen.class);
+		RSSMain.this.startActivity(intent);*/
 		
 		setContentView(R.layout.main);
 		

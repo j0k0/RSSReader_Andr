@@ -46,6 +46,7 @@ public class RSSMain extends Activity {
 		setContentView(R.layout.main);
 		
 		liste = (ListView) findViewById(R.id.feedListe);
+		liste.setSelector(R.drawable.list_selector);
 		
 		myContent = new Content();
 		
@@ -144,7 +145,7 @@ public class RSSMain extends Activity {
 			if(dialog.isShowing()){
 				dialog.dismiss();
 			}
-			liste.setAdapter(new ArrayAdapter<String>(RSSMain.this, android.R.layout.simple_list_item_1, myContent.getTitle()));
+			liste.setAdapter(new ArrayAdapter<String>(RSSMain.this, android.R.layout.simple_list_item_activated_1, myContent.getTitle()));
 		}
 		
 		protected void onPostExecute(Void result){
@@ -154,7 +155,7 @@ public class RSSMain extends Activity {
 			}
 			
 			//fill list with data
-			liste.setAdapter(new ArrayAdapter(RSSMain.this, android.R.layout.simple_list_item_1, myContent.getTitle()));
+			liste.setAdapter(new ArrayAdapter(RSSMain.this, android.R.layout.simple_list_item_activated_1, myContent.getTitle()));
 		}
 	}
 

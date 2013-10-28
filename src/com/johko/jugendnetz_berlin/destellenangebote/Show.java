@@ -2,7 +2,9 @@ package com.johko.jugendnetz_berlin.destellenangebote;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.webkit.WebView;
@@ -52,8 +54,23 @@ public class Show extends Activity {
 			
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url){
-				view.loadUrl(url);
-				return true;
+				if(url.startsWith("tel:")){
+					Intent dial = new Intent(Intent.ACTION_DIAL, Uri.parse(url));
+					startActivity(dial);
+					return true;
+				}else if(url.startsWith("mailto:")){
+					Intent sendMail = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
+					startActivity(sendMail);
+					return true;
+				}else if(url.startsWith("geo:")){
+					Intent searchAddress = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+					startActivity(searchAddress);
+					return true;
+				}else{
+					view.loadUrl(url);
+					return true;
+				}
+					
 			}
 		});
 		webView.loadUrl(url);

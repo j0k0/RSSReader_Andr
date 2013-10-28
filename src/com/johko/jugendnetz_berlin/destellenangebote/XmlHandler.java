@@ -13,6 +13,8 @@ public class XmlHandler extends DefaultHandler {
 	final private String TITLE = new String("title");
 	
 	final private String LINK = new String("link");
+	
+	final private String DATE = new String("pubDate");
 		
 	private boolean itemBoolean;
 	
@@ -20,7 +22,11 @@ public class XmlHandler extends DefaultHandler {
 	
 	private boolean linkBoolean;
 	
+	private boolean dateBoolean;
+	
 	private String contentTitle;
+	
+	private String	dateTitle;
 	
 	private Content myContent;
 	
@@ -40,7 +46,9 @@ public class XmlHandler extends DefaultHandler {
 		itemBoolean = false;
 		titleBoolean = false;
 		linkBoolean = false;
+		dateBoolean = false;
 		contentTitle = "";
+		dateTitle = "";
 	}
 	
 	@Override
@@ -56,6 +64,8 @@ public class XmlHandler extends DefaultHandler {
 			this.titleBoolean = true;
 		} else if (localName.equalsIgnoreCase(this.LINK)){
 			this.linkBoolean = true;
+		} else if(localName.equalsIgnoreCase(this.DATE)){
+			this.dateBoolean = true;
 		}
 	}
 	
@@ -73,6 +83,10 @@ public class XmlHandler extends DefaultHandler {
 			}
 		} else if(localName.equalsIgnoreCase(this.LINK)){
 			linkBoolean = false; 
+		}else if(localName.equalsIgnoreCase(this.DATE)){
+			Log.i(XmlHandler.class.getSimpleName(), this.dateTitle);
+			myContent.setDate(this.dateTitle);
+			this.dateTitle = "";
 		}
 	}
 	
@@ -80,13 +94,12 @@ public class XmlHandler extends DefaultHandler {
 	public void characters(char ch[], int start, int length) throws SAXException {
 		String textBetween = new String(ch, start, length);
 		String newUrl = "";
-		String help = "";
 		if(this.itemBoolean){
 			if(this.titleBoolean){
 				this.contentTitle = this.contentTitle + textBetween;
 			} else if(this.linkBoolean){
 				for(int i = start; i < (start+length); i++){
-					if((help = new String(ch, i, 3)).equals("www")){
+					if((new String(ch, i, 3)).equals("www")){
 						newUrl += "m";
 						i = i+2;
 					} else {
@@ -95,6 +108,12 @@ public class XmlHandler extends DefaultHandler {
 				}
 				myContent.setUrl(newUrl);
 				System.out.println(newUrl);
+			}else if(this.dateBoolean){
+				for(int i = start; i < (start+length); i++){
+					if(ch[i] == ','){
+						dateTitle = new String(ch, i+2, 11);
+					}
+				}
 			}
 		}
 	}

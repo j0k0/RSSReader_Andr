@@ -11,10 +11,13 @@ public class Content {
 	//URL for content
 	private List<String> url;
 	
+	private List<String> date;
+	
 	
 	public Content() {
 		title = new ArrayList<String>();
 		url = new ArrayList<String>();
+		date = new ArrayList<String>();
 	}
 	
 	public List<String> getTitle(){
@@ -36,6 +39,14 @@ public class Content {
 	
 	public void setUrl(String newsUrl){
 		this.url.add(newsUrl);
+	}
+	
+	public List<String> getDate(){
+		return this.date;
+	}
+	
+	public void setDate(String newDate){
+		this.date.add(newDate);
 	}
 	
 }

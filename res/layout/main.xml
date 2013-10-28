@@ -9,6 +9,9 @@
         android:id = "@+id/feedListe"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:listSelector="@drawable/list_selector"
+        android:cacheColorHint="@android:color/transparent"
          />
+
 
 </LinearLayout>

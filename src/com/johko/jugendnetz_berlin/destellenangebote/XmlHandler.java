@@ -1,5 +1,8 @@
 package com.johko.jugendnetz_berlin.destellenangebote;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -30,8 +33,11 @@ public class XmlHandler extends DefaultHandler {
 	
 	private Content myContent;
 	
+	private static List<Content> contents;
+	
 	public XmlHandler(Content content) {
 		myContent = content;
+		contents = new ArrayList<Content>();
 	}
 	
 	/*public static void main(String[] args) {
@@ -40,6 +46,10 @@ public class XmlHandler extends DefaultHandler {
 		System.out.println(atts.getValue(LINK));
 
 	}*/
+	
+	public static List<Content> getContent(){
+		return contents;
+	}
 	
 	@Override
 	public void startDocument() throws SAXException{
@@ -73,9 +83,9 @@ public class XmlHandler extends DefaultHandler {
 	public void endElement(String namespaceURI, String localName, String qName) throws SAXException{
 		if(localName.equalsIgnoreCase(this.ITEM)){
 			this.itemBoolean = false;
+			//contents.add(myContent);
 		} else if(localName.equalsIgnoreCase(this.TITLE)){
 			this.titleBoolean = false;
-			
 			if(this.itemBoolean){
 				Log.i(XmlHandler.class.getSimpleName(), this.contentTitle);
 				myContent.setTitle(this.contentTitle);

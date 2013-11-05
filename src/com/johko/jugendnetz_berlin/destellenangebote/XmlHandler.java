@@ -1,5 +1,8 @@
 package com.johko.jugendnetz_berlin.destellenangebote;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -28,18 +31,19 @@ public class XmlHandler extends DefaultHandler {
 	
 	private String	dateTitle;
 	
-	private Content myContent;
+	public static ArrayList<Content> myContent = new ArrayList<Content>();
 	
-	public XmlHandler(Content content) {
+	private Content nowCont;
+	
+	public XmlHandler(ArrayList<Content> content, Content singleCo) {
 		myContent = content;
+		nowCont = singleCo;
 	}
 	
-	/*public static void main(String[] args) {
-		Content con = new Content();
-		Handler tst = new Handler(con);
-		System.out.println(atts.getValue(LINK));
-
-	}*/
+	public XmlHandler(Content content){
+		nowCont = content;
+	}
+	
 	
 	@Override
 	public void startDocument() throws SAXException{
@@ -60,6 +64,7 @@ public class XmlHandler extends DefaultHandler {
 	public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException{
 		if(localName.equalsIgnoreCase(this.ITEM)){
 			this.itemBoolean = true;
+			nowCont = new Content();
 		} else if(localName.equalsIgnoreCase(this.TITLE)){
 			this.titleBoolean = true;
 		} else if (localName.equalsIgnoreCase(this.LINK)){
@@ -69,25 +74,35 @@ public class XmlHandler extends DefaultHandler {
 		}
 	}
 	
+	int i = 0;
+	
 	@Override
 	public void endElement(String namespaceURI, String localName, String qName) throws SAXException{
 		if(localName.equalsIgnoreCase(this.ITEM)){
 			this.itemBoolean = false;
+			//System.out.println(nowCont.getTitle() + "yyyy");
+				myContent.add(nowCont);
+				
+			//System.out.println(myContent.get(i).getTitle() + "xxxx");
+				ArrayList<Content> testee = myContent;
+				
+			i++;
 		} else if(localName.equalsIgnoreCase(this.TITLE)){
 			this.titleBoolean = false;
 			
 			if(this.itemBoolean){
 				Log.i(XmlHandler.class.getSimpleName(), this.contentTitle);
-				myContent.setTitle(this.contentTitle);
+				nowCont.setTitle(this.contentTitle);
 				this.contentTitle = "";
 			}
 		} else if(localName.equalsIgnoreCase(this.LINK)){
 			linkBoolean = false; 
 		}else if(localName.equalsIgnoreCase(this.DATE)){
 			Log.i(XmlHandler.class.getSimpleName(), this.dateTitle);
-			myContent.setDate(this.dateTitle);
+			nowCont.setDate(this.dateTitle);
 			this.dateTitle = "";
 		}
+		
 	}
 	
 	@Override
@@ -106,8 +121,7 @@ public class XmlHandler extends DefaultHandler {
 						newUrl += ch[i];
 					}
 				}
-				myContent.setUrl(newUrl);
-				System.out.println(newUrl);
+				nowCont.setUrl(newUrl);
 			}else if(this.dateBoolean){
 				for(int i = start; i < (start+length); i++){
 					if(ch[i] == ','){
@@ -116,7 +130,11 @@ public class XmlHandler extends DefaultHandler {
 				}
 			}
 		}
+		
 	}
+	
+	
+
 	
 
 }

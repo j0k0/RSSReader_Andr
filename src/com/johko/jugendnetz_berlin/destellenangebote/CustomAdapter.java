@@ -1,7 +1,10 @@
 package com.johko.jugendnetz_berlin.destellenangebote;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import android.app.Activity;
+import android.content.ClipData.Item;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,39 +14,41 @@ import android.widget.TextView;
 
 public class CustomAdapter extends ArrayAdapter<Content> {
 	
-	private ArrayList<Content> myContent;
-			
-	public CustomAdapter(Context context, int textViewResourceId,
-			ArrayList<Content> objects) {
-		super(context, textViewResourceId, objects);
-		myContent = objects;
-	}
+	Activity context;
+    private List<Content> contents;
+                    
+    public CustomAdapter(Context context, int textViewResourceId,
+                    ArrayList<Content> objects) {
+            super(context, textViewResourceId, objects);
+            contents = objects;
+    }
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent){
-		
-		View v = convertView;
-		
-		if(v==null){
-			LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			v = inflater.inflate(R.layout.list_row, null);
-		}
-		
-		Content actCont = myContent.get(position);
-		
-		if(actCont != null){
-			TextView title = (TextView) v.findViewById(R.id.title);
-			TextView date = (TextView) v.findViewById(R.id.date);
-			 
-			if(title != null){
-				actCont.getTitle();
-			}
-			if(date != null){
-				actCont.getDate();
-			}
-		}
-		
-		return v;
-	}
+
+    int ind = 0;
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent){
+            
+            View v = convertView;
+            
+            if(v == null){
+                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                v = inflater.inflate(R.layout.list_row, null);
+            }
+
+            Content i = contents.get(position);
+            
+            if (i != null){
+            	 TextView title = (TextView) v.findViewById(R.id.title);
+                 TextView date = (TextView) v.findViewById(R.id.date);
+            	
+                // System.out.println(getItem(position).getTitle() + " Position: " + position);
+            	 title.setText(getItem(position).getTitle());
+                 date.setText(getItem(position).getDate());
+            }
+                    
+            
+            
+            return v;
+    }
 
 }

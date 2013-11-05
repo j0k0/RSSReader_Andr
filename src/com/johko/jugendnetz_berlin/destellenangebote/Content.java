@@ -5,48 +5,57 @@ import java.util.List;
 
 public class Content {
 
-	//Title of message
-	private List<String> title;
-	
-	//URL for content
-	private List<String> url;
-	
-	private List<String> date;
-	
-	
-	public Content() {
-		title = new ArrayList<String>();
-		url = new ArrayList<String>();
-		date = new ArrayList<String>();
-	}
-	
-	public List<String> getTitle(){
-		return this.title;
-	}
+	  //Title of message
+    private String title;
+    
+    //URL for content
+    private String url;
+    
+    private String date;
+    
+    
+    public Content() {
+            title = "";
+            url = "";
+            date = "";
+    }
+    
+    public String getTitle(){
+            return this.title;
+    }
 
-	public void setTitle(String newsTitle){
-		this.title.add(newsTitle);
-	}
-	
-	public String getUrl(int pos){
-		
-		if(pos >= 0){
-			return this.url.get(pos);
-		} else{
-			return "";
-		}	
-	}
-	
-	public void setUrl(String newsUrl){
-		this.url.add(newsUrl);
-	}
-	
-	public List<String> getDate(){
-		return this.date;
-	}
-	
-	public void setDate(String newDate){
-		this.date.add(newDate);
-	}
+    public String getTitle2(int position){
+        return title;
+}
+    
+    public void setTitle(String newsTitle){
+            this.title = newsTitle;
+    }
+    
+    public String getUrl(int pos){
+            
+            if(pos >= 0){
+                    return this.url;
+            } else{
+                    return "";
+            }
+    }
+    
+    public void setUrl(String newsUrl){
+            this.url = newsUrl;
+    }
+    
+    public String getDate(){
+            return this.date;
+    }
+    
+    public String getDate2(int pos){
+        return date;
+}
+    
+    public void setDate(String newDate){
+            this.date = newDate;
+    }
+    
 	
 }

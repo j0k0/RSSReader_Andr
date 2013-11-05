@@ -9,11 +9,11 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="75dip"
+        android:layout_marginLeft="5dip"
         android:layout_centerVertical="true"
-        android:paddingBottom ="10dip"
+        android:paddingBottom ="5dip"
         android:textColor="#040404"
-        android:textSize="25sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:typeface="sans" />
     <TextView

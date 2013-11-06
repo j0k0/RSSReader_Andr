@@ -12,47 +12,41 @@ import android.util.Log;
 public class XmlHandler extends DefaultHandler {
 
 	final private String ITEM = new String("item");
-	
-	final private String TITLE = new String("title");
-	
-	final private String LINK = new String("link");
-	
-	final private String DATE = new String("pubDate");
-		
-	private boolean itemBoolean;
-	
-	private boolean titleBoolean;
-	
-	private boolean linkBoolean;
-	
-	private boolean dateBoolean;
-	
-	private String contentTitle;
-	
-	private String	dateTitle;
-	
-	private Content myContent;
-	
-	private static List<Content> contents;
-	
-	public XmlHandler(Content content) {
-		myContent = content;
-		contents = new ArrayList<Content>();
-	}
-	
-	/*public static void main(String[] args) {
-		Content con = new Content();
-		Handler tst = new Handler(con);
-		System.out.println(atts.getValue(LINK));
 
-	}*/
-	
-	public static List<Content> getContent(){
-		return contents;
+	final private String TITLE = new String("title");
+
+	final private String LINK = new String("link");
+
+	final private String DATE = new String("pubDate");
+
+	private boolean itemBoolean;
+
+	private boolean titleBoolean;
+
+	private boolean linkBoolean;
+
+	private boolean dateBoolean;
+
+	private String contentTitle;
+
+	private String dateTitle;
+
+	public static ArrayList<Content> myContent = new ArrayList<Content>();
+
+	private Content nowCont;
+
+	public XmlHandler(ArrayList<Content> content, Content singleCo) {
+		myContent = content;
+		nowCont = singleCo;
 	}
-	
+
+	public XmlHandler(Content content) {
+		nowCont = content;
+
+	}
+
 	@Override
-	public void startDocument() throws SAXException{
+	public void startDocument() throws SAXException {
 		itemBoolean = false;
 		titleBoolean = false;
 		linkBoolean = false;
@@ -60,73 +54,87 @@ public class XmlHandler extends DefaultHandler {
 		contentTitle = "";
 		dateTitle = "";
 	}
-	
+
 	@Override
-	public void endDocument() throws SAXException{
-		
+	public void endDocument() throws SAXException {
+
 	}
-	
+
 	@Override
-	public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException{
-		if(localName.equalsIgnoreCase(this.ITEM)){
+	public void startElement(String namespaceURI, String localName,
+			String qName, Attributes atts) throws SAXException {
+		if (localName.equalsIgnoreCase(this.ITEM)) {
 			this.itemBoolean = true;
-		} else if(localName.equalsIgnoreCase(this.TITLE)){
+			nowCont = new Content();
+		} else if (localName.equalsIgnoreCase(this.TITLE)) {
 			this.titleBoolean = true;
-		} else if (localName.equalsIgnoreCase(this.LINK)){
+		} else if (localName.equalsIgnoreCase(this.LINK)) {
 			this.linkBoolean = true;
-		} else if(localName.equalsIgnoreCase(this.DATE)){
+		} else if (localName.equalsIgnoreCase(this.DATE)) {
 			this.dateBoolean = true;
 		}
 	}
-	
+
+	int i = 0;
+
 	@Override
-	public void endElement(String namespaceURI, String localName, String qName) throws SAXException{
-		if(localName.equalsIgnoreCase(this.ITEM)){
+	public void endElement(String namespaceURI, String localName, String qName)
+			throws SAXException {
+		if (localName.equalsIgnoreCase(this.ITEM)) {
 			this.itemBoolean = false;
-			//contents.add(myContent);
-		} else if(localName.equalsIgnoreCase(this.TITLE)){
+
+			// System.out.println(nowCont.getTitle() + "yyyy");
+			myContent.add(nowCont);
+
+			// System.out.println(myContent.get(i).getTitle() + "xxxx");
+			ArrayList<Content> testee = myContent;
+
+			i++;
+
+		} else if (localName.equalsIgnoreCase(this.TITLE)) {
 			this.titleBoolean = false;
-			if(this.itemBoolean){
+			if (this.itemBoolean) {
 				Log.i(XmlHandler.class.getSimpleName(), this.contentTitle);
-				myContent.setTitle(this.contentTitle);
+				nowCont.setTitle(this.contentTitle);
 				this.contentTitle = "";
 			}
-		} else if(localName.equalsIgnoreCase(this.LINK)){
-			linkBoolean = false; 
-		}else if(localName.equalsIgnoreCase(this.DATE)){
+		} else if (localName.equalsIgnoreCase(this.LINK)) {
+			linkBoolean = false;
+		} else if (localName.equalsIgnoreCase(this.DATE)) {
 			Log.i(XmlHandler.class.getSimpleName(), this.dateTitle);
-			myContent.setDate(this.dateTitle);
+			nowCont.setDate(this.dateTitle);
 			this.dateTitle = "";
 		}
+
 	}
-	
+
 	@Override
-	public void characters(char ch[], int start, int length) throws SAXException {
+	public void characters(char ch[], int start, int length)
+			throws SAXException {
 		String textBetween = new String(ch, start, length);
 		String newUrl = "";
-		if(this.itemBoolean){
-			if(this.titleBoolean){
+		if (this.itemBoolean) {
+			if (this.titleBoolean) {
 				this.contentTitle = this.contentTitle + textBetween;
-			} else if(this.linkBoolean){
-				for(int i = start; i < (start+length); i++){
-					if((new String(ch, i, 3)).equals("www")){
+			} else if (this.linkBoolean) {
+				for (int i = start; i < (start + length); i++) {
+					if ((new String(ch, i, 3)).equals("www")) {
 						newUrl += "m";
-						i = i+2;
+						i = i + 2;
 					} else {
 						newUrl += ch[i];
 					}
 				}
-				myContent.setUrl(newUrl);
-				System.out.println(newUrl);
-			}else if(this.dateBoolean){
-				for(int i = start; i < (start+length); i++){
-					if(ch[i] == ','){
-						dateTitle = new String(ch, i+2, 11);
+				nowCont.setUrl(newUrl);
+			} else if (this.dateBoolean) {
+				for (int i = start; i < (start + length); i++) {
+					if (ch[i] == ',') {
+						dateTitle = new String(ch, i + 2, 11);
 					}
 				}
 			}
 		}
+
 	}
-	
 
 }

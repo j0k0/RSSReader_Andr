@@ -12,6 +12,7 @@ The user can select a listitem and is then redirected to a webview, which shows 
 <br>
 <ul>
 <li>Custom Adapter for multiple rows in listview</li>
-<li>Menu to choose different rss feeds</li>
+<li>Item style with selector</li>
+<li>TabMenu to choose different rss feeds</li>
 </ul>
 

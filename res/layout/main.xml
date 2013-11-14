@@ -9,8 +9,10 @@
         android:id = "@+id/feedListe"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+		android:background="@color/white"
+		android:divider="@drawable/customdivider"
 
          />
-
+	
 
 </LinearLayout>

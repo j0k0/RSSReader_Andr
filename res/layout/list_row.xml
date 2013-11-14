@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/list_selector"
+    android:background="@color/white"
     android:orientation="horizontal"
     android:padding="5dip" >
     <TextView
@@ -13,7 +13,7 @@
         android:layout_centerVertical="true"
         android:paddingBottom ="5dip"
         android:textColor="#040404"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:typeface="sans" />
     <TextView
@@ -25,5 +25,5 @@
         android:paddingTop="5dip"
         android:layout_centerHorizontal="true"
         android:textColor="#343434"
-        android:textSize="15sp" />
+        android:textSize="12sp" />
 </RelativeLayout>  

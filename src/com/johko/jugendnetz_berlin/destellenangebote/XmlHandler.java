@@ -1,7 +1,7 @@
 package com.johko.jugendnetz_berlin.destellenangebote;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -82,13 +82,12 @@ public class XmlHandler extends DefaultHandler {
 			throws SAXException {
 		if (localName.equalsIgnoreCase(this.ITEM)) {
 			this.itemBoolean = false;
-
-			// System.out.println(nowCont.getTitle() + "yyyy");
-			myContent.add(nowCont);
-
-			// System.out.println(myContent.get(i).getTitle() + "xxxx");
-			ArrayList<Content> testee = myContent;
-
+			//System.out.println(nowCont.getTitle() + "yyyy");
+				myContent.add(nowCont);
+				
+			//System.out.println(myContent.get(i).getTitle() + "xxxx");
+				//ArrayList<Content> testee = myContent;
+				
 			i++;
 
 		} else if (localName.equalsIgnoreCase(this.TITLE)) {

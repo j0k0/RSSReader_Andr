@@ -8,11 +8,14 @@ It does it by using a static url for the feed and reaing the xml data which is g
 The user can select a listitem and is then redirected to a webview, which shows the aricle connected to the rss entry.
 </p>
 
-<p><b>+++The app works but there is still a lot to do</b>
+<p><b>+++The app works but there is still a lot to do+++</b>
 <br>
 <ul>
-<li>Custom Adapter for multiple rows in listview</li>
-<li>Item style with selector</li>
+<li><del>Custom Adapter for multiple rows in listview</del></li>
+<li><del>Item style with selector</del></li>
+<li><del>Custom Style Action Bar</del></li>
+<li>Use Fragments</li>
 <li>TabMenu to choose different rss feeds</li>
+<li>Publish</li>
 </ul>
 

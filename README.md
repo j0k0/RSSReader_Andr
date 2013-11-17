@@ -11,8 +11,8 @@ The user can select a listitem and is then redirected to a webview, which shows 
 <p><b>+++The app works but there is still a lot to do+++</b>
 <br>
 <ul>
-<li>Custom Adapter for multiple rows in listview</strike></li>
-<li><strike>Item style with selector</strike></li>
+<li><del>Custom Adapter for multiple rows in listview</del></li>
+<li><del>Item style with selector</del></li>
 <li><del>Custom Style Action Bar</del></li>
 <li>Use Fragments</li>
 <li>TabMenu to choose different rss feeds</li>

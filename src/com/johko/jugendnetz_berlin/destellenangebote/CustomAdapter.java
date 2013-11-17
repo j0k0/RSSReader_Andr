@@ -37,11 +37,11 @@ public class CustomAdapter extends ArrayAdapter<Content> {
 
             Content i = contents.get(position);
             
+            //create custom item list view
             if (i != null){
             	 TextView title = (TextView) v.findViewById(R.id.title);
                  TextView date = (TextView) v.findViewById(R.id.date);
             	
-                // System.out.println(getItem(position).getTitle() + " Position: " + position);
             	 title.setText(getItem(position).getTitle());
                  date.setText(getItem(position).getDate());
             }

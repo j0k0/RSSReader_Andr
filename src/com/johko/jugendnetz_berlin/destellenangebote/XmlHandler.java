@@ -2,7 +2,6 @@ package com.johko.jugendnetz_berlin.destellenangebote;
 
 import java.util.ArrayList;
 
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -34,11 +33,6 @@ public class XmlHandler extends DefaultHandler {
 	public static ArrayList<Content> myContent = new ArrayList<Content>();
 
 	private Content nowCont;
-
-	public XmlHandler(ArrayList<Content> content, Content singleCo) {
-		myContent = content;
-		nowCont = singleCo;
-	}
 
 	public XmlHandler(Content content) {
 		nowCont = content;
@@ -75,21 +69,12 @@ public class XmlHandler extends DefaultHandler {
 		}
 	}
 
-	int i = 0;
-
 	@Override
 	public void endElement(String namespaceURI, String localName, String qName)
 			throws SAXException {
 		if (localName.equalsIgnoreCase(this.ITEM)) {
 			this.itemBoolean = false;
-			//System.out.println(nowCont.getTitle() + "yyyy");
-				myContent.add(nowCont);
-				
-			//System.out.println(myContent.get(i).getTitle() + "xxxx");
-				//ArrayList<Content> testee = myContent;
-				
-			i++;
-
+			myContent.add(nowCont);
 		} else if (localName.equalsIgnoreCase(this.TITLE)) {
 			this.titleBoolean = false;
 			if (this.itemBoolean) {
@@ -116,6 +101,7 @@ public class XmlHandler extends DefaultHandler {
 			if (this.titleBoolean) {
 				this.contentTitle = this.contentTitle + textBetween;
 			} else if (this.linkBoolean) {
+				//to get to the mobile version of the website cut of the 'www' and replace by 'm'
 				for (int i = start; i < (start + length); i++) {
 					if ((new String(ch, i, 3)).equals("www")) {
 						newUrl += "m";
@@ -126,6 +112,7 @@ public class XmlHandler extends DefaultHandler {
 				}
 				nowCont.setUrl(newUrl);
 			} else if (this.dateBoolean) {
+				//to only get the date, when the ',' is read, get the next 11 characters
 				for (int i = start; i < (start + length); i++) {
 					if (ch[i] == ',') {
 						dateTitle = new String(ch, i + 2, 11);

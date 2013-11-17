@@ -14,41 +14,41 @@ import android.widget.TextView;
 public class CustomAdapter extends ArrayAdapter<Content> {
 
 	Activity context;
+	
+    private List<Content> contents;
+                    
+    public CustomAdapter(Context context, int textViewResourceId,
+                    ArrayList<Content> objects) {
+            super(context, textViewResourceId, objects);
+            contents = objects;
+    }
 
-	private List<Content> contents;
 
-	public CustomAdapter(Context context, int textViewResourceId,
-			ArrayList<Content> objects) {
-		super(context, textViewResourceId, objects);
-		contents = objects;
-	}
+    int ind = 0;
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent){
+            
+            View v = convertView;
+            
+            if(v == null){
+                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                v = inflater.inflate(R.layout.list_row, null);
+            }
 
-	int ind = 0;
-
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-
-		View v = convertView;
-
-		if (v == null) {
-			LayoutInflater inflater = (LayoutInflater) getContext()
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			v = inflater.inflate(R.layout.list_row, null);
-		}
-
-		Content i = contents.get(position);
-
-		if (i != null) {
-			TextView title = (TextView) v.findViewById(R.id.title);
-			TextView date = (TextView) v.findViewById(R.id.date);
-
-			// System.out.println(getItem(position).getTitle() + " Position: " +
-			// position);
-			title.setText(getItem(position).getTitle());
-			date.setText(getItem(position).getDate());
-		}
-
-		return v;
-	}
+            Content i = contents.get(position);
+            
+            //create custom item list view
+            if (i != null){
+            	 TextView title = (TextView) v.findViewById(R.id.title);
+                 TextView date = (TextView) v.findViewById(R.id.date);
+            	
+            	 title.setText(getItem(position).getTitle());
+                 date.setText(getItem(position).getDate());
+            }
+                    
+            
+            
+            return v;
+    }
 
 }

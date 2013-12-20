@@ -14,8 +14,8 @@ The user can select a listitem and is then redirected to a webview, which shows 
 <li><del>Custom Adapter for multiple rows in listview</del></li>
 <li><del>Item style with selector</del></li>
 <li><del>Custom Style Action Bar</del></li>
-<li>Use Fragments</li>
-<li>TabMenu to choose different rss feeds</li>
+<li><del>Use Fragments</del></li>
+<li><del>TabMenu to choose different rss feeds</del></li>
 <li>Publish</li>
 </ul>
 

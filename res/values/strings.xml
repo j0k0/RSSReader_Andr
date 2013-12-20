@@ -11,10 +11,14 @@
     <string name="title_section2">Neues</string>
     <string name="title_section3">Termine</string>
     <string name="hello_world">Hello world!</string>
-	<color name = "white">#ffffff</color>
-	<color name = "red">#ff0000</color>
-	<color name = "reddish">#aa5555</color>
-    <color name = "theblue">#009adb</color>
-	
-	
+    <string name="refresh">Refresh</string>
+
+    <color name="white">#ffffff</color>
+    <color name="red">#ff0000</color>
+    <color name="reddish">#db4100</color>
+    <color name="theblue">#099adb</color>
+    <color name="lightblue">#396ece</color>
+    <color name="transparent">#00000000</color>
+	<color name="bgblue">#cadcfc</color>
+	<color name="selectedblue">#b1cbfc</color>
 </resources>

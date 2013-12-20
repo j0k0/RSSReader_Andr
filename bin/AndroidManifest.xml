@@ -5,8 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="7"
-        android:targetSdkVersion="11" />
+        android:minSdkVersion="11"
+        android:targetSdkVersion="19" />
 
     <uses-permission android:name = "android.permission.INTERNET"/>
     
@@ -29,7 +29,13 @@
             android:label="@string/app_name" 
             >
         </activity>
-        <activity android:name=".Show"> </activity>
+        <activity android:name=".Show"
+            android:parentActivityName="com.johko.jugendnetz_berlin.destellenangebote.RSSMain"> 
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.johko.jugendnetz_berlin.destellenangebote.RSSMain" />
+            
+            </activity>
     </application>
 
 </manifest>

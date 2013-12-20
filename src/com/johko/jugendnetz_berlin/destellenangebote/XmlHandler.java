@@ -6,7 +6,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import android.util.Log;
 
 public class XmlHandler extends DefaultHandler {
 
@@ -78,14 +77,12 @@ public class XmlHandler extends DefaultHandler {
 		} else if (localName.equalsIgnoreCase(this.TITLE)) {
 			this.titleBoolean = false;
 			if (this.itemBoolean) {
-				Log.i(XmlHandler.class.getSimpleName(), this.contentTitle);
 				nowCont.setTitle(this.contentTitle);
 				this.contentTitle = "";
 			}
 		} else if (localName.equalsIgnoreCase(this.LINK)) {
 			linkBoolean = false;
 		} else if (localName.equalsIgnoreCase(this.DATE)) {
-			Log.i(XmlHandler.class.getSimpleName(), this.dateTitle);
 			nowCont.setDate(this.dateTitle);
 			this.dateTitle = "";
 		}
@@ -101,18 +98,23 @@ public class XmlHandler extends DefaultHandler {
 			if (this.titleBoolean) {
 				this.contentTitle = this.contentTitle + textBetween;
 			} else if (this.linkBoolean) {
-				//to get to the mobile version of the website cut of the 'www' and replace by 'm'
+				// to get to the mobile version of the website cut of the 'www'
+				// and replace by 'm'
 				for (int i = start; i < (start + length); i++) {
-					if ((new String(ch, i, 3)).equals("www")) {
-						newUrl += "m";
-						i = i + 2;
+					if ((new String(ch, i, 2)).equals("//")) {
+						newUrl += "//m.";
+						i = i + 1;
+					} else if ((new String(ch, i, 3)).equals("www")) {
+						// newUrl += "m";
+						i = i + 3;
 					} else {
 						newUrl += ch[i];
 					}
 				}
 				nowCont.setUrl(newUrl);
 			} else if (this.dateBoolean) {
-				//to only get the date, when the ',' is read, get the next 11 characters
+				// to only get the date, when the ',' is read, get the next 11
+				// characters
 				for (int i = start; i < (start + length); i++) {
 					if (ch[i] == ',') {
 						dateTitle = new String(ch, i + 2, 11);

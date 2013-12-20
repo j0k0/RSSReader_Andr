@@ -9,6 +9,7 @@ public class SplashScreen extends Activity {
 
 	private boolean mIsBackButtonPressed = false;
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		

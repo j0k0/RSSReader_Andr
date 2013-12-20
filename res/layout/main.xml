@@ -3,16 +3,23 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
 	android:orientation = "vertical" 
+	android:focusable="false"
 	  >
 
-    <ListView
-        android:id = "@+id/feedListe"
+    <FrameLayout android:id="@+id/fragment_placeholder" 
+        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bgblue"
+        android:focusable="false"/>
+    
+    <fragment android:name="com.johko.jugendnetz_berlin.destellenangebote.List_Fragment"
+       	android:id = "@+id/feedListe"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-		android:background="@color/white"
-		android:divider="@drawable/customdivider"
-
+        android:background="@color/bgblue"
          />
 	
+
 
 </LinearLayout>

@@ -16,7 +16,7 @@ public class CustomAdapter extends ArrayAdapter<Content> {
 	Activity context;
 	
     private List<Content> contents;
-                    
+
     public CustomAdapter(Context context, int textViewResourceId,
                     ArrayList<Content> objects) {
             super(context, textViewResourceId, objects);
@@ -24,7 +24,7 @@ public class CustomAdapter extends ArrayAdapter<Content> {
     }
 
 
-    int ind = 0;
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
             
@@ -46,7 +46,6 @@ public class CustomAdapter extends ArrayAdapter<Content> {
                  date.setText(getItem(position).getDate());
             }
                     
-            
             
             return v;
     }

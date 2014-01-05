@@ -5,8 +5,20 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="13"
         android:targetSdkVersion="19" />
+    
+    
+
+    <supports-screens 
+        android:resizeable="true"
+       	android:smallScreens="true"
+        android:normalScreens="true" 
+        android:largeScreens="true"
+        android:xlargeScreens= "false"
+      	android:anyDensity="true"/>
+
+    
 
     <uses-permission android:name = "android.permission.INTERNET"/>
     

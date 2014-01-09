@@ -16,6 +16,14 @@ The user can select a listitem and is then redirected to a webview, which shows 
 <li><del>Custom Style Action Bar</del></li>
 <li><del>Use Fragments</del></li>
 <li><del>TabMenu to choose different rss feeds</del></li>
-<li>Publish</li>
+<li><del>Publish</del></li>
+</ul>
+
+Additional functions to come:
+<ul>
+<li>ShareActionProvider</li>
+<li>Favourites</li>
+<li>Add own rss feeds</li>
+<li>(Better design)</li>
 </ul>
 
